@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comic</title>
+</head>
+<body>
+<h1 id="title">Comic</h1>
+<img src="" alt="comic img" id="comic-img">
+<script>
+    const img = document.getElementById("comic-img");
+    let title = document.getElementById("title");
+
+    function fetchID(email){
+        const params = new URLSearchParams();
+        params.append('email', email);
+        return fetch('https://fwd.innopolis.university/api/hw2?' + params.toString())
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data)
+            })
+    }
+
+    function fetchContentByID(id){
+        return fetch('https://fwd.innopolis.university/api/comic?id=425')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data.safe_title)
+                return data;
+            })
+    }
+
+    const id = fetchID('d.koncheva@innopolis.university');
+    const content = fetchContentByID(id);
+    title.textContent = content.safe_data;
+</script>
+</body>
+</html>
