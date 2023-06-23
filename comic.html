@@ -7,9 +7,11 @@
 <body>
 <h1 id="title">Comic</h1>
 <img src="" alt="comic img" id="comic-img">
+<h2 id="date">Date</h2>
 <script>
     const img = document.getElementById("comic-img");
-    let title = document.getElementById("title");
+    const title = document.getElementById("title");
+    const date = document.getElementById("date");
 
     function fetchID(email){
         const params = new URLSearchParams();
@@ -19,24 +21,30 @@
                 return response.json();
             })
             .then(function (data) {
-                console.log(data)
+                fetchContentByID(data);
             })
     }
 
     function fetchContentByID(id){
-        return fetch('https://fwd.innopolis.university/api/comic?id=425')
+        return fetch('https://fwd.innopolis.university/api/comic?id=' + id.toString())
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data.safe_title)
-                return data;
+                title.textContent = data.safe_title;
+                img.src = data.img;
+                const day = data.day;
+                const month = data.month;
+                const year = data.year;
+                const event = new Date(year, month, day);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                date.textContent = event.toLocaleDateString(options);
+                console.log(data);
             })
     }
 
     const id = fetchID('d.koncheva@innopolis.university');
-    const content = fetchContentByID(id);
-    title.textContent = content.safe_data;
+
 </script>
 </body>
 </html>
