@@ -20,9 +20,6 @@
             .then(function (response) {
                 return response.json();
             })
-            .then(function (data) {
-                fetchContentByID(data);
-            })
     }
 
     function fetchContentByID(id){
@@ -30,20 +27,20 @@
             .then(function (response) {
                 return response.json();
             })
-            .then(function (data) {
-                title.textContent = data.safe_title;
-                img.src = data.img;
-                const day = data.day;
-                const month = data.month;
-                const year = data.year;
-                const event = new Date(year, month, day);
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                date.textContent = event.toLocaleDateString(options);
-                console.log(data);
-            })
     }
 
-    const id = fetchID('d.koncheva@innopolis.university');
+    async function main(){
+        const id = await fetchID('d.koncheva@innopolis.university');
+        const data = await fetchContentByID(id);
+
+        title.textContent = data.safe_title;
+        img.alt = data.alt;
+        img.src = data.img;
+        const eventDate = new Date(data.year, data.month, data.day);
+        date.textContent = eventDate.toLocaleDateString();
+    }
+
+    main();
 
 </script>
 </body>
