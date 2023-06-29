@@ -27,7 +27,6 @@ ul,li{
 
 .container{
     width: 80%;
-    height: 1200px;
     margin: auto;
 }
 
@@ -86,5 +85,16 @@ body{
 .icons-flexbox{
     flex-direction: row;
     align-items: center;
+}
+
+@media only screen and (max-width: 600px){
+    .content{
+        display: block;
+    }
+
+    .photo{
+        height: 300px;
+        width: 210px;
+    }
 }
 
