@@ -1,25 +1,28 @@
 {
   "name": "homework",
-  "version": "1.0.0",
-  "description": "",
-  "main": "script.ts",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup --config rollup.config.js"
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "echo 0 Errors, 0 Warnings"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.2",
-    "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
+    "@babel/eslint-parser": "^7.22.9",
+    "@sveltejs/adapter-static": "^2.0.2",
+    "@sveltejs/kit": "^1.20.4",
+    "eslint": "^8.44.0",
+    "svelte": "^4.0.5",
+    "svelte-check": "^3.4.3",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.2"
   },
+  "type": "module",
   "dependencies": {
-    "@date-io/date-fns": "^2.16.0",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-terser": "^0.4.3",
-    "date-fns": "^2.30.0",
-    "moment": "^2.29.4"
-  },
-  "type": "module"
+    "date-fns": "^2.30.0"
+  }
 }
