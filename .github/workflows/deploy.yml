@@ -3,7 +3,7 @@ name: Deploy on GitHub Pages
 on:
   push:
     branches:
-      - master # (замените на main, если предпочитаете)
+      - main
 
 permissions:
   contents: write
